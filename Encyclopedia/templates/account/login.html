@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}登录{% endblock title %}
+{% block content %}
+<div class="container">
+	<div class="row text-center">
+		<h1>登录</h1>
+		<p>请输入您的用户名和密码</p>
+        {% if form.errors %}
+			<div class="alert alert-warning alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<p>您的用户名和密码不匹配，请重试</p>
+			</div>
+        {% endif %}
+        {% if next %}
+            <form class="form-horizontal" action="{% url 'account:login' %}?next={{next}}" method="post">
+        {% else %}
+            <form class="form-horizontal" action="{% url 'account:login' %}" method="post">
+        {% endif %}
+            {% csrf_token %}
+			<div class="form-group">
+				<label  for="{{ form.username.id_for_label }}" class="col-md-5 control-label">用户名：</label>
+				<div class="col-md-6 text-left">
+                    {{ form.username }}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="{{ form.password.id_for_label }}" class="col-md-5 control-label">密码：</label>
+				<div class="col-md-6 text-left">
+                    {{ form.password }}
+				</div>
+			</div>
+			<div>
+				<p>没有账户？<strong><a href="{% url 'account:register' %}">注册</a></strong> 忘记密码？<strong><a href="#">重置</a></strong></p>
+			</div>
+			<div class="form-group">
+			    <div class="text-center">
+			      <button type="submit" class="btn btn btn-primary btn-lg">登录</button>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock content %}

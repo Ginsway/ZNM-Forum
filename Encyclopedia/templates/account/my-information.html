@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}个人信息{% endblock title %}
+{% block content %}
+	<div class="container">
+		<div class="text-center">
+			<div class="">
+				<div style="height: 100px;">
+					
+				</div>
+				<div class="row" style="background-color: #EEEEEE;padding: 20px;"> 
+					<div class="col-md-1">
+						<img src="{% static 'img\ZNM.png' %}" class="img-responsive img-rounded"/>
+					</div>
+					<div class="col-md-4 text-left">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 style="margin-top: 5px;">{{ user.username }}</h2>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<p class="text-muted">简介：{{ userinfo.about_me }}</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-md-offset-3 text-left">
+						<p><span class="glyphicon glyphicon-envelope"></span> {{ user.email }}</p>
+						<p><span class="glyphicon glyphicon-earphone"></span> {{ userinfo.birth }}</p>
+						<p><span class="glyphicon glyphicon-road"></span> {{ userinfo.address }}</p>
+					</div>
+					<div class="col-md-2">
+						<a href="{% url 'account:edit_my_information' %}" class="btn btn-primary btn-lg">编辑</a>
+						<button class="btn btn-primary btn-lg" style="margin-top: 5px;" onclick="">上传头像</button>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 10px;">
+					<hr>
+					<div class="col-md-3">
+						<p class="small text-muted">生日</p>
+						<p>{{ userinfo.birth }}</p>
+					</div>
+					<div class="col-md-3">
+						<p class="small text-muted">毕业学校</p>
+						<p>{{ userinfo.school }}</p>
+					</div>
+					<div class="col-md-3">
+						<p class="small text-muted">工作单位</p>
+						<p>{{ userinfo.company }}</p>
+					</div>
+					<div class="col-md-3">
+						<p class="small text-muted">职业</p>
+						<p>{{ userinfo.profession }}</p>
+					</div>
+				</div>
+				<!--<hr>-->
+			</div>
+		</div>
+	</div>
+{% endblock content %}

@@ -1,1 +1,1 @@
-# Django-Forum
+# ZNM-Forum
